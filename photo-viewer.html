@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tran Family Album</title>
+
+  <!-- PWA manifest -->
+  <link rel="manifest" href="./manifest.json">
+
+  <!-- Theme & iOS PWA meta tags -->
+  <meta name="theme-color" content="#01696f">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Tran Family Album">
+  <link rel="apple-touch-icon" href="./icons/icon-192.svg">
+
+  <!-- Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div class="app">
+    <div class="view-container">
+
+      <!-- View 1: Album List -->
+      <section id="view-album-list" class="view view--active" aria-label="Album list">
+        <header class="album-list-header">
+          <h1 class="album-list-title">📷 Tran Family Album</h1>
+          <p class="album-list-subtitle">Tap an album to view photos</p>
+        </header>
+        <div id="album-cards" class="album-cards"></div>
+      </section>
+
+      <!-- View 2: Photo Grid -->
+      <section id="view-photo-grid" class="view" aria-label="Photo grid">
+        <header class="photo-grid-header">
+          <button
+            id="back-button"
+            class="back-button"
+            type="button"
+            aria-label="Go back to album list"
+          >← Family</button>
+          <h2 id="photo-grid-title" class="photo-grid-title"></h2>
+        </header>
+        <div id="photo-grid" class="photo-grid"></div>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- Lightbox overlay -->
+  <div
+    id="lightbox"
+    class="lightbox"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Photo viewer"
+    aria-hidden="true"
+  >
+    <button
+      id="lightbox-close"
+      class="lightbox-close"
+      type="button"
+      aria-label="Close photo viewer"
+    >✕</button>
+
+    <button
+      id="lightbox-prev"
+      class="lightbox-nav lightbox-nav--prev"
+      type="button"
+      aria-label="Previous photo"
+    >←</button>
+
+    <button
+      id="lightbox-next"
+      class="lightbox-nav lightbox-nav--next"
+      type="button"
+      aria-label="Next photo"
+    >→</button>
+
+    <div class="lightbox-content">
+      <img
+        id="lightbox-image"
+        class="lightbox-image"
+        src=""
+        alt=""
+        width="800"
+        height="600"
+        decoding="async"
+      />
+      <p id="lightbox-caption" class="lightbox-caption"></p>
+    </div>
+  </div>
+
+  <script src="./app.js"></script>
+  <script>
+    // Register the service worker for offline PWA support
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", function () {
+        navigator.serviceWorker.register("./sw.js").catch(function (err) {
+          console.warn("Service worker registration failed:", err);
+        });
+      });
+    }
+  </script>
+</body>
+</html>
