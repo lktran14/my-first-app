@@ -66,6 +66,7 @@ const viewPhotoGrid = document.getElementById("view-photo-grid");
 const albumCardsContainer = document.getElementById("album-cards");
 const photoGridContainer = document.getElementById("photo-grid");
 const photoGridTitle = document.getElementById("photo-grid-title");
+const photoGridSubtitle = document.getElementById("photo-grid-subtitle");
 const backButton = document.getElementById("back-button");
 const lightbox = document.getElementById("lightbox");
 const lightboxImage = document.getElementById("lightbox-image");
@@ -118,7 +119,7 @@ function renderAlbumList() {
 
   albums.forEach((album) => {
     const count = album.photos.length;
-    const countLabel = count === 1 ? "1 photo" : `${count} photos`;
+    const countLabel = count === 1 ? "1 Photo" : `${count} Photos`;
 
     const card = document.createElement("button");
     card.className = "album-card";
@@ -159,6 +160,8 @@ function renderPhotoGrid() {
   }
 
   photoGridTitle.textContent = album.name;
+  const count = album.photos.length;
+  photoGridSubtitle.textContent = count === 1 ? "1 Photo" : `${count} Photos`;
   photoGridContainer.innerHTML = "";
 
   album.photos.forEach((photo, index) => {
