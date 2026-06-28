@@ -504,53 +504,37 @@ button:focus-visible,
 }
 
 /* -------------------------------------------------------------------------- */
-/* View 2: Photo Grid                                                         */
+/* View 2: Photo Grid (reference layout)                                      */
 /* -------------------------------------------------------------------------- */
 
+#view-photo-grid {
+  margin-left: calc(-1 * var(--space-4));
+  margin-right: calc(-1 * var(--space-4));
+  width: calc(100% + 2 * var(--space-4));
+}
+
 .photo-grid-header {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
   min-height: var(--touch-min);
-  margin-bottom: var(--space-4);
-  padding: 0 var(--space-2);
+  background: var(--bg-surface);
+  padding: var(--space-5) var(--space-4) var(--space-4);
 }
 
 .photo-grid-header-text {
   text-align: center;
-  padding: 0 64px;
-}
-
-.back-button {
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  min-height: var(--touch-min);
-  min-width: var(--touch-min);
-  padding: var(--space-2) var(--space-4);
-  color: var(--text-primary);
-  font-family: var(--font-body);
-  font-size: var(--text-body);
-  font-weight: var(--weight-title);
-  border-radius: var(--radius-lg);
-  transition: transform 0.1s ease, background-color 0.15s ease;
-}
-
-.back-button:active {
-  transform: translateY(-50%) scale(0.98);
-  background-color: rgba(26, 26, 26, 0.06);
+  padding: 0 calc(var(--touch-min) + var(--space-2));
 }
 
 .photo-grid-title {
   font-family: var(--font-display);
-  font-size: 1.2375rem; /* ~19.8px — ~10% smaller than screen title */
+  font-size: var(--text-title);
   font-weight: var(--weight-title);
   color: var(--text-primary);
   margin: 0;
   text-align: center;
-  padding: 0;
 }
 
 .photo-grid-subtitle {
@@ -562,11 +546,18 @@ button:focus-visible,
   text-align: center;
 }
 
+/* Rounded-top panel — grid sits flush below header */
+.photo-grid-panel {
+  background: var(--grid-gap-color);
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  overflow: hidden;
+}
+
+/* Masonry columns — tight editorial gutters like reference */
 .photo-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 12px;
-  padding: 0 8px;
+  columns: 2;
+  column-gap: 3px;
+  padding: 0;
 }
 
 .photo-tile {
@@ -574,22 +565,36 @@ button:focus-visible,
   width: 100%;
   padding: 0;
   border: none;
-  border-radius: 0.75rem;
+  border-radius: 0;
   overflow: hidden;
   cursor: pointer;
-  transition: transform 0.1s ease;
-  background: var(--color-border);
+  break-inside: avoid;
+  margin-bottom: 3px;
+  background: var(--grid-gap-color);
+  transition: opacity 0.15s ease;
 }
 
 .photo-tile:active {
-  transform: scale(0.98);
+  opacity: 0.85;
 }
 
 .photo-tile img {
   width: 100%;
-  aspect-ratio: 1;
+  display: block;
   object-fit: cover;
-  border-radius: 0.75rem;
+  border-radius: var(--radius-sm);
+}
+
+.photo-tile--tall img {
+  aspect-ratio: 3 / 4;
+}
+
+.photo-tile--wide img {
+  aspect-ratio: 4 / 3;
+}
+
+.photo-tile--square img {
+  aspect-ratio: 1;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -726,9 +731,23 @@ button:focus-visible,
     padding: var(--space-5) var(--space-6);
   }
 
+  #view-photo-grid {
+    margin-left: calc(-1 * var(--space-6));
+    margin-right: calc(-1 * var(--space-6));
+    width: calc(100% + 2 * var(--space-6));
+  }
+
+  .photo-grid-header {
+    padding: var(--space-5) var(--space-6) var(--space-4);
+  }
+
   .photo-grid {
-    gap: 16px;
-    padding: 0;
+    columns: 3;
+    column-gap: 4px;
+  }
+
+  .photo-tile {
+    margin-bottom: 4px;
   }
 
   .lightbox-nav--prev {
@@ -742,5 +761,11 @@ button:focus-visible,
   .lightbox-close {
     top: 16px;
     right: 16px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .photo-grid {
+    columns: 4;
   }
 }

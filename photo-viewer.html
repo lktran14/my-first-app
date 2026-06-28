@@ -50,16 +50,28 @@
         <header class="photo-grid-header">
           <button
             id="back-button"
-            class="back-button"
+            class="header-pill header-pill--left"
             type="button"
             aria-label="Go back to album list"
-          >← Family</button>
+          >
+            <svg class="header-pill-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
           <div class="photo-grid-header-text">
             <h2 id="photo-grid-title" class="photo-grid-title"></h2>
             <p id="photo-grid-subtitle" class="photo-grid-subtitle"></p>
           </div>
+          <button class="header-pill header-pill--right" type="button" aria-label="Search">
+            <svg class="header-pill-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="11" cy="11" r="6" stroke="currentColor" stroke-width="2"/>
+              <path d="M16 16l4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </button>
         </header>
-        <div id="photo-grid" class="photo-grid"></div>
+        <div class="photo-grid-panel">
+          <div id="photo-grid" class="photo-grid"></div>
+        </div>
       </section>
 
     </div>
