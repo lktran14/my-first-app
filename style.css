@@ -32,6 +32,7 @@
   /* Borders & grid */
   --border-subtle: #dcd9d5;
   --grid-gap-color: #f7f6f2;
+  --photo-grid-gap: 3px;
 
   /* Overlays (lightbox, scrims) */
   --overlay-dark: rgba(0, 0, 0, 0.55);
@@ -532,17 +533,18 @@ button:focus-visible,
   overflow: hidden;
 }
 
-/* Masonry columns — tight editorial gutters like reference */
+/* Masonry columns — equal gutters on all sides and between tiles */
 .photo-grid {
   columns: 2;
-  column-gap: 3px;
-  padding: 0;
+  column-gap: 0;
+  line-height: 0;
 }
 
 .photo-tile {
-  display: inline-block;
+  display: block;
   width: 100%;
-  padding: 0;
+  box-sizing: border-box;
+  padding: calc(var(--photo-grid-gap) / 2);
   border: none;
   border-radius: 0;
   overflow: hidden;
@@ -550,7 +552,7 @@ button:focus-visible,
   break-inside: avoid;
   -webkit-column-break-inside: avoid;
   page-break-inside: avoid;
-  margin-bottom: 3px;
+  margin: 0;
   background: var(--grid-gap-color);
   transition: opacity 0.15s ease;
 }
@@ -712,11 +714,7 @@ button:focus-visible,
 
   .photo-grid {
     columns: 3;
-    column-gap: 4px;
-  }
-
-  .photo-tile {
-    margin-bottom: 4px;
+    --photo-grid-gap: 4px;
   }
 
   .lightbox-nav--prev {
