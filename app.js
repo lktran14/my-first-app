@@ -11,7 +11,7 @@
 const albums = [
   {
     id: "family",
-    name: "Family",
+    name: "Beach Holidays",
     cover: "./photos/family/P1000200.png",
     photos: [
       { src: "./photos/family/P1000200.png", caption: "Swimming, September 1992" },
