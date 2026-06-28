@@ -131,7 +131,6 @@ function renderAlbumList() {
     const count = album.photos.length;
     const countLabel = count === 1 ? "1 Photo" : `${count} Photos`;
     const [mainSrc, topSrc, bottomSrc] = getCollageSources(album);
-    const avatarSources = getCollageSources(album).slice(0, 3);
 
     const card = document.createElement("button");
     card.className = "album-card";
@@ -178,14 +177,6 @@ function renderAlbumList() {
         <h2 class="album-card-name">${album.name}</h2>
         <span class="album-card-chevron" aria-hidden="true">›</span>
         <p class="album-card-count">${countLabel}</p>
-        <div class="album-card-avatars" aria-hidden="true">
-          ${avatarSources
-            .map(
-              (src) =>
-                `<img class="album-card-avatar" src="${src}" alt="" width="32" height="32" loading="lazy" decoding="async" />`
-            )
-            .join("")}
-        </div>
       </div>
     `;
 

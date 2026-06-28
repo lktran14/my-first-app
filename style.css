@@ -483,26 +483,6 @@ button:focus-visible,
   margin: 0;
 }
 
-.album-card-avatars {
-  grid-column: 2;
-  grid-row: 2;
-  display: flex;
-  justify-content: flex-end;
-}
-
-.album-card-avatar {
-  width: 32px;
-  height: 32px;
-  border-radius: var(--radius-full);
-  object-fit: cover;
-  border: 2px solid var(--bg-surface);
-  margin-left: -10px;
-}
-
-.album-card-avatar:first-child {
-  margin-left: 0;
-}
-
 /* -------------------------------------------------------------------------- */
 /* View 2: Photo Grid (reference layout)                                      */
 /* -------------------------------------------------------------------------- */
