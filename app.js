@@ -40,7 +40,7 @@ const albums = [
     id: "garden",
     name: "Engagement and Wedding",
     cover: "./photos/wedding/P1090349.png",
-    listPreviewMain: "./photos/wedding/P1090344.png",
+    listPreviewMain: "./photos/wedding/P1090338.png",
     photos: [
       { src: "./photos/wedding/P1090335.png", caption: "", objectPosition: "38% center" },
       { src: "./photos/wedding/P1090361.png", caption: "" },
