@@ -42,7 +42,7 @@ const albums = [
     cover: "./photos/wedding/P1090349.png",
     listPreviewMain: "./photos/wedding/P1090344.png",
     photos: [
-      { src: "./photos/wedding/P1090335.png", caption: "" },
+      { src: "./photos/wedding/P1090335.png", caption: "", objectPosition: "38% center" },
       { src: "./photos/wedding/P1090361.png", caption: "" },
       { src: "./photos/wedding/P1090318.png", caption: "" },
       { src: "./photos/wedding/P1090320.png", caption: "" },
@@ -51,7 +51,7 @@ const albums = [
       { src: "./photos/wedding/P1090339.png", caption: "" },
       { src: "./photos/wedding/P1090340.png", caption: "" },
       { src: "./photos/wedding/P1090342.png", caption: "" },
-      { src: "./photos/wedding/P1090343.png", caption: "" },
+      { src: "./photos/wedding/P1090343.png", caption: "", objectPosition: "20% center" },
       { src: "./photos/wedding/P1090344.png", caption: "" },
       { src: "./photos/wedding/P1090345.png", caption: "" },
       { src: "./photos/wedding/P1090346.png", caption: "" },
@@ -132,6 +132,31 @@ function getCurrentAlbum() {
     return null;
   }
   return getAlbumById(state.currentAlbumId);
+}
+
+/**
+ * Find photo metadata by source path across all albums.
+ */
+function getPhotoBySrc(src) {
+  for (const album of albums) {
+    const photo = getAllPhotos(album).find((entry) => entry.src === src);
+    if (photo) {
+      return photo;
+    }
+  }
+  return null;
+}
+
+/**
+ * Apply optional crop focus for grid/collage thumbnails.
+ */
+function applyPhotoObjectPosition(img, photoOrSrc) {
+  const photo =
+    typeof photoOrSrc === "string" ? getPhotoBySrc(photoOrSrc) : photoOrSrc;
+
+  if (photo?.objectPosition) {
+    img.style.objectPosition = photo.objectPosition;
+  }
 }
 
 /**
@@ -224,6 +249,10 @@ function renderAlbumList() {
         <p class="album-card-count">${countLabel}</p>
       </div>
     `;
+
+    card.querySelectorAll(".album-card-collage img").forEach((img, i) => {
+      applyPhotoObjectPosition(img, [mainSrc, topSrc, bottomSrc][i]);
+    });
 
     card.addEventListener("click", () => {
       navigateToAlbum(album.id);
@@ -319,15 +348,14 @@ function createPhotoTile(photo, index, album, totalCount) {
   );
 
   const alt = getPhotoAlt(photo, album.name);
+  const img = document.createElement("img");
 
-  tile.innerHTML = `
-    <img
-      src="${photo.src}"
-      alt="${alt}"
-      loading="lazy"
-      decoding="async"
-    />
-  `;
+  img.src = photo.src;
+  img.alt = alt;
+  img.loading = "lazy";
+  img.decoding = "async";
+  applyPhotoObjectPosition(img, photo);
+  tile.appendChild(img);
 
   tile.addEventListener("click", () => {
     openLightbox(index);
