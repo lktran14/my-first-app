@@ -295,6 +295,8 @@ button:focus-visible,
   width: 100%;
   left: 0;
   top: 0;
+  height: 0;
+  overflow: hidden;
   pointer-events: none;
 }
 
@@ -302,12 +304,13 @@ button:focus-visible,
   opacity: 1;
   visibility: visible;
   position: relative;
+  height: auto;
+  overflow: visible;
   pointer-events: auto;
 }
 
 .view-container {
   position: relative;
-  min-height: 100vh;
 }
 
 /* -------------------------------------------------------------------------- */

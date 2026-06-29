@@ -907,6 +907,8 @@ function showView(viewName) {
     viewAlbumList.classList.remove("view--active");
     viewPhotoGrid.classList.add("view--active");
   }
+
+  window.scrollTo(0, 0);
 }
 
 /**
