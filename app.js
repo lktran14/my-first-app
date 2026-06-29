@@ -101,11 +101,15 @@ const albums = [
     id: "holidays",
     name: "2018 Baltics Cruise",
     cover: "./photos/holidays/IMG_5280.png",
-    photos: [
-      { src: "./photos/holidays/IMG_5280.png", caption: "On deck, June 2018" },
-      { src: "./photos/holidays/IMG_5294.png", caption: "Amsterdam, June 2018" },
-    ],
+    photos: [],
     sections: [
+      {
+        heading: "Amsterdam",
+        photos: [
+          { src: "./photos/holidays/IMG_5280.png", caption: "On deck, June 2018" },
+          { src: "./photos/holidays/IMG_5294.png", caption: "Amsterdam, June 2018" },
+        ],
+      },
       {
         heading: "Berlin",
         photos: [
@@ -115,6 +119,21 @@ const albums = [
           { src: "./photos/holidays/IMG_5485.png", caption: "Reichstag dome, June 2018" },
           { src: "./photos/holidays/IMG_5514.png", caption: "Checkpoint Charlie, June 2018" },
           { src: "./photos/holidays/IMG_5533.png", caption: "Train platform, June 2018" },
+        ],
+      },
+      {
+        heading: "Finland & Russia",
+        photos: [
+          { src: "./photos/holidays/IMG_5618.png", caption: "Helsinki Cathedral, June 2018" },
+          { src: "./photos/holidays/IMG_5631.png", caption: "Kauppatori market, June 2018" },
+          { src: "./photos/holidays/IMG_5643.png", caption: "Saaristo restaurant, June 2018" },
+          { src: "./photos/holidays/IMG_5658.png", caption: "SkyWheel Helsinki, June 2018" },
+          { src: "./photos/holidays/IMG_5669.png", caption: "Sibelius Monument, June 2018" },
+          { src: "./photos/holidays/IMG_5730.png", caption: "Saint Isaac's Cathedral, June 2018" },
+          { src: "./photos/holidays/IMG_5732.png", caption: "Saint Isaac's Cathedral dome, June 2018" },
+          { src: "./photos/holidays/IMG_5778.png", caption: "World Cup banner, June 2018" },
+          { src: "./photos/holidays/IMG_5781.png", caption: "Church of the Savior on Spilled Blood, June 2018" },
+          { src: "./photos/holidays/IMG_5788.png", caption: "Church of the Savior on Spilled Blood, June 2018" },
         ],
       },
     ],

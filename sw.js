@@ -3,7 +3,7 @@
  * Caches all app assets for offline use.
  */
 
-const CACHE_NAME = "tran-family-album-v13";
+const CACHE_NAME = "tran-family-album-v14";
 
 const ASSETS_TO_CACHE = [
   "./",
@@ -55,6 +55,16 @@ const ASSETS_TO_CACHE = [
   "./photos/wedding/P1080860.png",
   "./photos/holidays/IMG_5280.png",
   "./photos/holidays/IMG_5294.png",
+  "./photos/holidays/IMG_5618.png",
+  "./photos/holidays/IMG_5631.png",
+  "./photos/holidays/IMG_5643.png",
+  "./photos/holidays/IMG_5658.png",
+  "./photos/holidays/IMG_5669.png",
+  "./photos/holidays/IMG_5730.png",
+  "./photos/holidays/IMG_5732.png",
+  "./photos/holidays/IMG_5778.png",
+  "./photos/holidays/IMG_5781.png",
+  "./photos/holidays/IMG_5788.png",
 ];
 
 self.addEventListener("install", (event) => {
