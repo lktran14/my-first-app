@@ -130,6 +130,16 @@ const ASSETS_TO_CACHE = [
   "./photos/asia-cruise-2019/IMG_6688.png",
   "./photos/asia-cruise-2019/IMG_6689.png",
   "./photos/asia-cruise-2019/IMG_6698.png",
+  "./photos/asia-cruise-2019/IMG_6703.png",
+  "./photos/asia-cruise-2019/IMG_6704.png",
+  "./photos/asia-cruise-2019/IMG_6706.png",
+  "./photos/asia-cruise-2019/IMG_6718.png",
+  "./photos/asia-cruise-2019/IMG_6719.png",
+  "./photos/asia-cruise-2019/IMG_6721.png",
+  "./photos/asia-cruise-2019/IMG_6722.png",
+  "./photos/asia-cruise-2019/IMG_6729.png",
+  "./photos/asia-cruise-2019/IMG_6732.png",
+  "./photos/asia-cruise-2019/IMG_6743.png",
 ];
 
 self.addEventListener("install", (event) => {
