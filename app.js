@@ -235,6 +235,79 @@ function renderAlbumList() {
 }
 
 /**
+ * Repeating row layouts — large/small combinations for visual variety.
+ * Each entry: { layout, count } photos consumed per row.
+ */
+const GRID_ROW_PATTERNS = [
+  { layout: "large-stack-left", count: 3 },
+  { layout: "tall-large", count: 2 },
+  { layout: "wide-tall", count: 2 },
+  { layout: "stack-large-right", count: 3 },
+];
+
+const GRID_TILE_SLOTS = {
+  "large-stack-left": ["photo-tile--large", "photo-tile--small", "photo-tile--small"],
+  "tall-large": ["photo-tile--tall", "photo-tile--wide"],
+  "wide-tall": ["photo-tile--wide", "photo-tile--tall"],
+  "stack-large-right": ["photo-tile--small", "photo-tile--small", "photo-tile--large"],
+  pair: ["photo-tile--half", "photo-tile--half"],
+  single: ["photo-tile--full"],
+};
+
+/**
+ * Append photos to the grid using alternating row layouts.
+ * Returns the next photo index after rendering.
+ */
+function renderPhotoBatch(container, photos, startIndex, album, totalCount) {
+  let index = startIndex;
+  let photoIdx = 0;
+  let patternIndex = 0;
+
+  while (photoIdx < photos.length) {
+    const pattern = GRID_ROW_PATTERNS[patternIndex % GRID_ROW_PATTERNS.length];
+    const remaining = photos.length - photoIdx;
+
+    if (remaining >= pattern.count) {
+      const rowPhotos = photos.slice(photoIdx, photoIdx + pattern.count);
+      container.appendChild(
+        createPhotoGridRow(pattern.layout, rowPhotos, index, album, totalCount)
+      );
+      index += pattern.count;
+      photoIdx += pattern.count;
+      patternIndex += 1;
+    } else {
+      const rowPhotos = photos.slice(photoIdx);
+      const layout = rowPhotos.length === 1 ? "single" : "pair";
+      container.appendChild(
+        createPhotoGridRow(layout, rowPhotos, index, album, totalCount)
+      );
+      index += rowPhotos.length;
+      photoIdx += rowPhotos.length;
+    }
+  }
+
+  return index;
+}
+
+/**
+ * Build one grid row with layout-specific tile placement.
+ */
+function createPhotoGridRow(layout, photos, startIndex, album, totalCount) {
+  const row = document.createElement("div");
+  row.className = `photo-grid-row photo-grid-row--${layout}`;
+
+  const slotClasses = GRID_TILE_SLOTS[layout] || GRID_TILE_SLOTS.single;
+
+  photos.forEach((photo, i) => {
+    const tile = createPhotoTile(photo, startIndex + i, album, totalCount);
+    tile.classList.add(slotClasses[i] || "photo-tile--full");
+    row.appendChild(tile);
+  });
+
+  return row;
+}
+
+/**
  * Create a photo tile button for the grid.
  */
 function createPhotoTile(photo, index, album, totalCount) {
@@ -279,14 +352,13 @@ function renderPhotoGrid() {
   photoGridSubtitle.textContent = count === 1 ? "1 Photo" : `${count} Photos`;
   photoGridContainer.innerHTML = "";
 
-  let photoIndex = 0;
-
-  album.photos.forEach((photo) => {
-    photoGridContainer.appendChild(
-      createPhotoTile(photo, photoIndex, album, count)
-    );
-    photoIndex += 1;
-  });
+  let photoIndex = renderPhotoBatch(
+    photoGridContainer,
+    album.photos,
+    0,
+    album,
+    count
+  );
 
   if (album.sections) {
     album.sections.forEach((section) => {
@@ -297,12 +369,13 @@ function renderPhotoGrid() {
         photoGridContainer.appendChild(heading);
       }
 
-      section.photos.forEach((photo) => {
-        photoGridContainer.appendChild(
-          createPhotoTile(photo, photoIndex, album, count)
-        );
-        photoIndex += 1;
-      });
+      photoIndex = renderPhotoBatch(
+        photoGridContainer,
+        section.photos,
+        photoIndex,
+        album,
+        count
+      );
     });
   }
 }
