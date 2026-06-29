@@ -50,13 +50,11 @@ const albums = [
       { src: "./photos/wedding/P1090342.png", caption: "" },
       { src: "./photos/wedding/P1090345.png", caption: "" },
       { src: "./photos/wedding/P1090350.png", caption: "", objectPosition: "center top" },
-      { src: "./photos/wedding/P1090351.png", caption: "" },
       { src: "./photos/wedding/P1080796.png", caption: "" },
       { src: "./photos/wedding/P1080797.png", caption: "" },
       { src: "./photos/wedding/P1080801.png", caption: "" },
       { src: "./photos/wedding/P1080803.png", caption: "" },
       { src: "./photos/wedding/P1080789.png", caption: "" },
-      { src: "./photos/wedding/P1080804.png", caption: "" },
       { src: "./photos/wedding/P1080805.png", caption: "" },
       { src: "./photos/wedding/P1080806.png", caption: "" },
       { src: "./photos/wedding/P1080819.png", caption: "" },
@@ -303,6 +301,83 @@ const GRID_TILE_SLOTS = {
   single: ["photo-tile--full"],
 };
 
+const PORTRAIT_SLOT_CLASSES = new Set(["photo-tile--tall", "photo-tile--large"]);
+
+/** @type {Map<string, "portrait" | "landscape">} */
+const orientationCache = new Map();
+
+function isPortraitSlot(slotClass) {
+  return PORTRAIT_SLOT_CLASSES.has(slotClass);
+}
+
+function isPhotoPortrait(photo) {
+  return orientationCache.get(photo.src) === "portrait";
+}
+
+function loadPhotoOrientation(src) {
+  if (orientationCache.has(src)) {
+    return Promise.resolve(orientationCache.get(src));
+  }
+
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.decoding = "async";
+    img.onload = () => {
+      const orientation =
+        img.naturalHeight > img.naturalWidth ? "portrait" : "landscape";
+      orientationCache.set(src, orientation);
+      resolve(orientation);
+    };
+    img.onerror = () => {
+      orientationCache.set(src, "landscape");
+      resolve("landscape");
+    };
+    img.src = src;
+  });
+}
+
+function preloadOrientations(photos) {
+  return Promise.all(photos.map((photo) => loadPhotoOrientation(photo.src)));
+}
+
+/**
+ * Match photos to grid slots so portrait images land in tall/large slots.
+ * Returns slotIndex → photoIndex within the row.
+ */
+function assignPhotosToSlots(photos, slotClasses) {
+  const photoEntries = photos.map((photo, photoIndex) => ({
+    photoIndex,
+    portrait: isPhotoPortrait(photo),
+  }));
+
+  const slotEntries = slotClasses.map((slotClass, slotIndex) => ({
+    slotIndex,
+    portrait: isPortraitSlot(slotClass),
+  }));
+
+  const assignment = new Array(photos.length).fill(null);
+  const usedPhotoIndices = new Set();
+
+  const portraitPhotos = photoEntries.filter((entry) => entry.portrait);
+  const portraitSlots = slotEntries.filter((slot) => slot.portrait);
+
+  for (let i = 0; i < Math.min(portraitPhotos.length, portraitSlots.length); i++) {
+    assignment[portraitSlots[i].slotIndex] = portraitPhotos[i].photoIndex;
+    usedPhotoIndices.add(portraitPhotos[i].photoIndex);
+  }
+
+  const remainingPhotos = photoEntries.filter(
+    (entry) => !usedPhotoIndices.has(entry.photoIndex)
+  );
+  const remainingSlots = slotEntries.filter((slot) => assignment[slot.slotIndex] === null);
+
+  remainingSlots.forEach((slot, i) => {
+    assignment[slot.slotIndex] = remainingPhotos[i].photoIndex;
+  });
+
+  return assignment;
+}
+
 /**
  * Append photos to the grid using alternating row layouts.
  * Returns the next photo index after rendering.
@@ -346,10 +421,13 @@ function createPhotoGridRow(layout, photos, startIndex, album, totalCount) {
   row.className = `photo-grid-row photo-grid-row--${layout}`;
 
   const slotClasses = GRID_TILE_SLOTS[layout] || GRID_TILE_SLOTS.single;
+  const assignment = assignPhotosToSlots(photos, slotClasses);
 
-  photos.forEach((photo, i) => {
-    const tile = createPhotoTile(photo, startIndex + i, album, totalCount);
-    tile.classList.add(slotClasses[i] || "photo-tile--full");
+  slotClasses.forEach((slotClass, slotIndex) => {
+    const photoIndexInRow = assignment[slotIndex];
+    const photo = photos[photoIndexInRow];
+    const tile = createPhotoTile(photo, startIndex + photoIndexInRow, album, totalCount);
+    tile.classList.add(slotClass || "photo-tile--full");
     row.appendChild(tile);
   });
 
@@ -388,7 +466,7 @@ function createPhotoTile(photo, index, album, totalCount) {
 /**
  * Render the photo grid for the current album.
  */
-function renderPhotoGrid() {
+async function renderPhotoGrid() {
   const album = getCurrentAlbum();
   if (!album) {
     return;
@@ -399,6 +477,12 @@ function renderPhotoGrid() {
   const count = allPhotos.length;
   photoGridSubtitle.textContent = count === 1 ? "1 Photo" : `${count} Photos`;
   photoGridContainer.innerHTML = "";
+
+  await preloadOrientations(allPhotos);
+
+  if (getCurrentAlbum()?.id !== album.id) {
+    return;
+  }
 
   let photoIndex = renderPhotoBatch(
     photoGridContainer,
