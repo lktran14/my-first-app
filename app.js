@@ -342,6 +342,18 @@ const albums = [
           { src: "./photos/asia-cruise-2019/IMG_7259.png", caption: "On board, November 2019" },
         ],
       },
+      {
+        heading: "Kagoshima",
+        photos: [
+          { src: "./photos/asia-cruise-2019/IMG_7270.png", caption: "Post box with Sakurajima, November 2019" },
+          { src: "./photos/asia-cruise-2019/IMG_7273.png", caption: "Chrysanthemum festival, Sengan-en, November 2019" },
+          { src: "./photos/asia-cruise-2019/IMG_7279.png", caption: "Sengan-en Garden, November 2019" },
+          { src: "./photos/asia-cruise-2019/IMG_7283.png", caption: "Suzumon gate, Sengan-en, November 2019" },
+          { src: "./photos/asia-cruise-2019/IMG_7284.png", caption: "Sengan-en Garden, November 2019" },
+          { src: "./photos/asia-cruise-2019/IMG_7286.png", caption: "Shimazu crest display, Sengan-en, November 2019" },
+          { src: "./photos/asia-cruise-2019/IMG_7288.png", caption: "Sakurajima from Sengan-en, November 2019" },
+        ],
+      },
     ],
   },
 ];
