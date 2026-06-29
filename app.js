@@ -12,7 +12,7 @@ const albums = [
 
   {
     id: "asia-cruise-2019",
-    name: "2019 Asia cruise",
+    name: "Asia Cruise 2019",
     cover: "./photos/asia-cruise-2019/IMG_6814.png",
     photos: [],
     sections: [
@@ -163,7 +163,7 @@ const albums = [
 
   {
     id: "holidays",
-    name: "2018 Baltics Cruise",
+    name: "Baltics Cruise 2018",
     cover: "./photos/holidays/IMG_5280.png",
     photos: [],
     sections: [
@@ -361,7 +361,7 @@ const albums = [
 
   {
     id: "garden",
-    name: "Engagement and Wedding",
+    name: "Engagement & Wedding 1985",
     cover: "./photos/wedding/P1090338.png",
     listPreviewMain: "./photos/wedding/P1090338.png",
     photos: [
