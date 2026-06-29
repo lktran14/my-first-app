@@ -237,6 +237,23 @@ const albums = [
       },
     ],
   },
+  {
+    id: "asia-cruise-2019",
+    name: "2019 Asia cruise",
+    cover: "./photos/asia-cruise-2019/IMG_6678.png",
+    photos: [],
+    sections: [
+      {
+        heading: "Tokyo",
+        photos: [
+          { src: "./photos/asia-cruise-2019/IMG_6678.png", caption: "City view, November 2019" },
+          { src: "./photos/asia-cruise-2019/IMG_6688.png", caption: "Tokyo Tower view, November 2019" },
+          { src: "./photos/asia-cruise-2019/IMG_6689.png", caption: "Christmas tree, November 2019" },
+          { src: "./photos/asia-cruise-2019/IMG_6698.png", caption: "" },
+        ],
+      },
+    ],
+  },
 ];
 
 /* -------------------------------------------------------------------------- */
