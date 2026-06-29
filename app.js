@@ -12,10 +12,10 @@ const albums = [
   {
     id: "family",
     name: "Beach Holidays",
-    cover: "./photos/family/P1000200.png",
+    cover: "./photos/family/P1000202.png",
     photos: [
-      { src: "./photos/family/P1000200.png", caption: "Swimming, September 1992" },
       { src: "./photos/family/P1000202.png", caption: "Balcony, June 2002" },
+      { src: "./photos/family/P1000200.png", caption: "Swimming, September 1992" },
       { src: "./photos/family/P1000201.png", caption: "Three generations, June 2002" },
       { src: "./photos/family/P1000199.png", caption: "" },
       { src: "./photos/family/P1000205.png", caption: "Blackpool beach" },
@@ -98,7 +98,6 @@ const photoGridSubtitle = document.getElementById("photo-grid-subtitle");
 const backButton = document.getElementById("back-button");
 const lightbox = document.getElementById("lightbox");
 const lightboxImage = document.getElementById("lightbox-image");
-const lightboxCaption = document.getElementById("lightbox-caption");
 const lightboxClose = document.getElementById("lightbox-close");
 const lightboxPrev = document.getElementById("lightbox-prev");
 const lightboxNext = document.getElementById("lightbox-next");
@@ -381,7 +380,7 @@ function renderPhotoGrid() {
 }
 
 /**
- * Update lightbox image and caption for the current photo index.
+ * Update lightbox image for the current photo index.
  */
 function updateLightboxContent() {
   const album = getCurrentAlbum();
@@ -397,7 +396,6 @@ function updateLightboxContent() {
 
   lightboxImage.src = photo.src;
   lightboxImage.alt = getPhotoAlt(photo, album.name);
-  lightboxCaption.textContent = photo.caption || "";
 }
 
 /* -------------------------------------------------------------------------- */

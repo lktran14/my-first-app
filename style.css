@@ -714,17 +714,6 @@ button:focus-visible,
   border-radius: 0.25rem;
 }
 
-.lightbox-caption {
-  font-family: var(--font-body);
-  font-size: var(--text-subheading);
-  font-weight: var(--weight-body);
-  color: var(--text-inverse);
-  text-align: center;
-  margin-top: var(--space-4);
-  padding: 0 var(--space-4);
-  min-height: 27px;
-}
-
 .lightbox-close {
   position: absolute;
   top: 8px;
