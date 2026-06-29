@@ -3,7 +3,7 @@
  * Caches all app assets for offline use.
  */
 
-const CACHE_NAME = "tran-family-album-v6";
+const CACHE_NAME = "tran-family-album-v9";
 
 const ASSETS_TO_CACHE = [
   "./",
@@ -28,21 +28,37 @@ const ASSETS_TO_CACHE = [
   "./photos/family/P1000213.png",
   "./photos/wedding/P1090318.png",
   "./photos/wedding/P1090321.png",
-  "./photos/wedding/P1090320.png",
   "./photos/wedding/P1090335.png",
   "./photos/wedding/P1090338.png",
   "./photos/wedding/P1090339.png",
   "./photos/wedding/P1090340.png",
   "./photos/wedding/P1090342.png",
-  "./photos/wedding/P1090343.png",
   "./photos/wedding/P1090344.png",
   "./photos/wedding/P1090345.png",
-  "./photos/wedding/P1090346.png",
   "./photos/wedding/P1090347.png",
-  "./photos/wedding/P1090349.png",
   "./photos/wedding/P1090350.png",
   "./photos/wedding/P1090351.png",
   "./photos/wedding/P1090361.png",
+  "./photos/wedding/P1080796.png",
+  "./photos/wedding/P1080797.png",
+  "./photos/wedding/P1080801.png",
+  "./photos/wedding/P1080803.png",
+  "./photos/wedding/P1080804.png",
+  "./photos/wedding/P1080805.png",
+  "./photos/wedding/P1080819.png",
+  "./photos/wedding/P1080821.png",
+  "./photos/wedding/P1080823.png",
+  "./photos/wedding/P1080826.png",
+  "./photos/wedding/P1080829.png",
+  "./photos/wedding/P1080832.png",
+  "./photos/wedding/P1080835.png",
+  "./photos/wedding/P1080836.png",
+  "./photos/wedding/P1080841.png",
+  "./photos/wedding/P1080842.png",
+  "./photos/wedding/P1080843.png",
+  "./photos/wedding/P1080852.png",
+  "./photos/wedding/P1080860.png",
+  "./photos/wedding/P1080878.png",
 ];
 
 self.addEventListener("install", (event) => {
