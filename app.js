@@ -104,6 +104,9 @@ const state = {
   lightboxPhotoIndex: 0,
 };
 
+/** Bumps on each grid render so stale async renders can bail out. */
+let photoGridRenderId = 0;
+
 /* -------------------------------------------------------------------------- */
 /* DOM references                                                             */
 /* -------------------------------------------------------------------------- */
@@ -472,6 +475,9 @@ async function renderPhotoGrid() {
     return;
   }
 
+  const renderId = ++photoGridRenderId;
+  const albumId = album.id;
+
   photoGridTitle.textContent = album.name;
   const allPhotos = getAllPhotos(album);
   const count = allPhotos.length;
@@ -480,7 +486,7 @@ async function renderPhotoGrid() {
 
   await preloadOrientations(allPhotos);
 
-  if (getCurrentAlbum()?.id !== album.id) {
+  if (renderId !== photoGridRenderId || getCurrentAlbum()?.id !== albumId) {
     return;
   }
 
@@ -557,10 +563,7 @@ function navigateToAlbum(albumId) {
     return;
   }
 
-  state.currentAlbumId = albumId;
   window.location.hash = `#/album/${albumId}`;
-  renderPhotoGrid();
-  showView("photo-grid");
 }
 
 /**
