@@ -247,9 +247,9 @@ const albums = [
         heading: "Tokyo",
         photos: [
           { src: "./photos/asia-cruise-2019/IMG_6814.png", caption: "Nikko Toshogu Shrine, November 2019" },
-          { src: "./photos/asia-cruise-2019/IMG_6698.png", caption: "" },
+          { src: "./photos/asia-cruise-2019/IMG_6698.png", caption: "Moon Pine, Ueno Park, November 2019" },
           { src: "./photos/asia-cruise-2019/IMG_6704.png", caption: "Tsukiji market street, November 2019" },
-          { src: "./photos/asia-cruise-2019/IMG_6706.png", caption: "Moon Pine, Ueno Park, November 2019" },
+          { src: "./photos/asia-cruise-2019/IMG_6706.png", caption: "" },
           { src: "./photos/asia-cruise-2019/IMG_6718.png", caption: "KFC, November 2019" },
           { src: "./photos/asia-cruise-2019/IMG_6719.png", caption: "Kaminarimon Gate, Asakusa, November 2019" },
           { src: "./photos/asia-cruise-2019/IMG_6722.png", caption: "Senso-ji Temple, November 2019" },
