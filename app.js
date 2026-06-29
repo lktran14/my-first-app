@@ -105,6 +105,19 @@ const albums = [
       { src: "./photos/holidays/IMG_5280.png", caption: "On deck, June 2018" },
       { src: "./photos/holidays/IMG_5294.png", caption: "Amsterdam, June 2018" },
     ],
+    sections: [
+      {
+        heading: "Berlin",
+        photos: [
+          { src: "./photos/holidays/IMG_5453.png", caption: "Brandenburg Gate, June 2018" },
+          { src: "./photos/holidays/IMG_5465.png", caption: "Reichstag, June 2018" },
+          { src: "./photos/holidays/IMG_5468.png", caption: "City view, June 2018" },
+          { src: "./photos/holidays/IMG_5485.png", caption: "Reichstag dome, June 2018" },
+          { src: "./photos/holidays/IMG_5514.png", caption: "Checkpoint Charlie, June 2018" },
+          { src: "./photos/holidays/IMG_5533.png", caption: "Train platform, June 2018" },
+        ],
+      },
+    ],
   },
 ];
 
