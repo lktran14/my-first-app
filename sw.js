@@ -3,7 +3,7 @@
  * Caches all app assets for offline use.
  */
 
-const CACHE_NAME = "tran-family-album-v18";
+const CACHE_NAME = "tran-family-album-v19";
 
 const ASSETS_TO_CACHE = [
   "./",
@@ -140,6 +140,24 @@ const ASSETS_TO_CACHE = [
   "./photos/asia-cruise-2019/IMG_6729.png",
   "./photos/asia-cruise-2019/IMG_6732.png",
   "./photos/asia-cruise-2019/IMG_6743.png",
+  "./photos/asia-cruise-2019/IMG_6763.png",
+  "./photos/asia-cruise-2019/IMG_6774.png",
+  "./photos/asia-cruise-2019/IMG_6786.png",
+  "./photos/asia-cruise-2019/IMG_6793.png",
+  "./photos/asia-cruise-2019/IMG_6801.png",
+  "./photos/asia-cruise-2019/IMG_6802.png",
+  "./photos/asia-cruise-2019/IMG_6806.png",
+  "./photos/asia-cruise-2019/IMG_6810.png",
+  "./photos/asia-cruise-2019/IMG_6811.png",
+  "./photos/asia-cruise-2019/IMG_6814.png",
+  "./photos/asia-cruise-2019/IMG_6823.png",
+  "./photos/asia-cruise-2019/IMG_6837.png",
+  "./photos/asia-cruise-2019/IMG_6848.png",
+  "./photos/asia-cruise-2019/IMG_6851.png",
+  "./photos/asia-cruise-2019/IMG_6859.png",
+  "./photos/asia-cruise-2019/IMG_6870.png",
+  "./photos/asia-cruise-2019/IMG_6932.png",
+  "./photos/asia-cruise-2019/IMG_6936.png",
 ];
 
 self.addEventListener("install", (event) => {
